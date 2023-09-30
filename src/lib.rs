@@ -1,10 +1,12 @@
 //! # PDX Syntax
+//! 
 //! This is a crate that defines the syntax of Paradox game files. It can be used to parse
 //! the plain text files into an AST it defines. The main purpose of this crate is to provide
 //! a convenient way to parse the files, which can be used for further tools, particularly, 
-//! tools for modders. 
+//! tools for modders.
 //! 
-//! # Usage
+//! ## Usage
+//! 
 //! ```ignore
 //! /// Parse a given paradox script file.
 //! use pdx_syntax::script::parse_file;
@@ -18,12 +20,14 @@
 //! }
 //! ```
 //! 
-//! # Supported Syntax
-//! - Script: Paradox script. You can find the files in like `${game_root_dir}/game/common`. 
+//! ## Supported Syntax
+//! 
+//! - Script: Paradox script. You can find the files in like `${game_root_dir}/game/common`.
 //! Most of the files are in this format.
 //! - Localization: Paradox localization file. You can find the files in `${game_root_dir}/game/localization`.
 //! 
-//! # Serialization
+//! ## Serialization
+//! 
 //! The AST defined in this crate can be serialized via [`serde`]. You can use this feature
 //! to convert the AST into other formats, like JSON, and use the parsing results in other
 //! languages, like Python.

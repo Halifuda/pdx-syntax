@@ -2,6 +2,13 @@
 name = "pdx-syntax"
 version = "0.1.0"
 edition = "2021"
+license = "MIT"
+description = "Paradox script/localization syntax parser."
+readme = "README.md"
+authors = ["Halifuda"]
+keywords = ["paradox", "parser", "game", "tools"]
+repository = "https://github.com/Halifuda/pdx-syntax"
+documentation = "https://docs.rs/pdx-syntax"
 
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 
