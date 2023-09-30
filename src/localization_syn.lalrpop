@@ -1,0 +1,25 @@
+//! Syntax grammar for localization files.
+//!
+grammar;
+
+use crate::localization::types::*;
+
+match {  
+    // white space
+    r"\s*" => {},
+    // line comment
+    r"\#[^\n\r]*[\n\r]*" => {},
+    // default (defined below)
+    _
+}
+
+pub LocList: LocList = <l: Loc> <e: Entry+> => LocList(l, e);
+
+Loc: Loc = <Ident> ":" => Loc(<>);
+
+Entry: Entry = <k: Ident> ":" <n: Num?> <v: RawStr> => Entry(k, n, v);
+
+Ident: String = r#"[a-zA-Z0-9_\-\.\']*"# => <>.to_string();
+// Receive single line, even with '\"'.
+RawStr: String = r#"\"[^\n\r]*\""# => <>.to_string();
+Num: u8 = <Ident> => <>.parse::<u8>().unwrap();

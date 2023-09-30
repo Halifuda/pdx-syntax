@@ -1,0 +1,29 @@
+[package]
+name = "pdx-syntax"
+version = "0.1.0"
+edition = "2021"
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[dependencies]
+# Syntax handler.
+lalrpop-util = { version = "*", features = ["lexer"] }
+# Sadly paradox add some BOM encoding in its files.
+strip_bom = "*"
+# Serilization for FFI.
+serde = { version = "1.0", features = ["derive"] }
+
+[build-dependencies]
+lalrpop = "*"
+
+[[example]]
+name = "single_script"
+
+[[example]]
+name = "all_scripts"
+
+[[example]]
+name = "single_loc"
+
+[[example]]
+name = "all_loc"

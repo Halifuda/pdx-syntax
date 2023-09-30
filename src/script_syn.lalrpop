@@ -1,0 +1,48 @@
+//! Syntax grammar for scripts.
+//!
+grammar;
+
+use crate::script::types::*;
+
+match {  
+    // white space
+    r"\s*" => {},
+    // line comment
+    r"\#[^\n\r]*[\n\r]*" => {},
+    // default (defined below)
+    _
+}
+
+pub Units: Units = <Unit+> => Units(<>);
+
+Unit: Unit = {
+    <key: Key> "=" <value: Value> => Unit::KeyValue(key, value),
+    <value: Value> => Unit::SingleValue(value),
+    <key: Key> "?=" <value: Value> => Unit::Questioned(key, value),
+    <key: Key> <rel: Rel> <value: Value> => Unit::Relation(key, rel.to_string(), value),
+}
+
+/// Relation operator.
+Rel: String = {
+    r"==" => <>.to_string(),
+    r">=" => <>.to_string(),
+    r"<=" => <>.to_string(),
+    r">" => <>.to_string(),
+    r"<" => <>.to_string(),
+}
+
+Key: Key = <Entry> => Key(<>);
+
+Value: Value = {
+    "{" "}" => Value::Empty,
+    <Entry> => Value::Primitive(<>),
+    "{" <Units> "}" => Value::Units(Box::new(<>)),
+}
+
+Entry: Entry = {
+    <Ident> => Entry::Ident(<>),
+    <RawStr> => Entry::RawStr(<>),
+}
+
+Ident: String = r#"[^=<>\{\}\"\n\r\s]*"# => <>.to_string();
+RawStr: String = r#"\"[^\"]*\""# => <>.to_string();
