@@ -14,9 +14,9 @@ documentation = "https://docs.rs/pdx-syntax"
 
 [dependencies]
 # Syntax handler.
-lalrpop-util = { version = "*", features = ["lexer"] }
+lalrpop-util = { version = "0.20.0", features = ["lexer"] }
 # Sadly paradox add some BOM encoding in its files.
-strip_bom = "*"
+strip_bom = "0.20.0"
 # Serilization for FFI.
 serde = { version = "1.0", features = ["derive"] }
 
