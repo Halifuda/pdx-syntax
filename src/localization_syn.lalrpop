@@ -13,11 +13,11 @@ match {
     _
 }
 
-pub LocList: LocList = <l: Loc> <e: Entry+> => LocList(l, e);
+pub LocList: LocList = <lang: Loc> <entries: Entry+> => LocList{ <> };
 
 Loc: Loc = <Ident> ":" => Loc(<>);
 
-Entry: Entry = <k: Ident> ":" <n: Num?> <v: RawStr> => Entry(k, n, v);
+Entry: Entry = <key: Ident> ":" <num: Num?> <value: RawStr> => Entry{ <> };
 
 Ident: String = r#"[a-zA-Z0-9_\-\.\']*"# => <>.to_string();
 // Receive single line, even with '\"'.

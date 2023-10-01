@@ -7,7 +7,7 @@
 //! 
 //! ## Usage
 //! 
-//! ```ignore
+//! ```rust
 //! /// Parse a given paradox script file.
 //! use pdx_syntax::script::parse_file;
 //! fn main() {
@@ -16,20 +16,25 @@
 //!     let path = args.next().expect("Missing argument: path");
 //!     let ast = parse_file(&path).unwrap();
 //!     // Do something with the AST.
-//!     println!("{:#?}", ast);
+//!     ast.push(Unit::SingleValue(Value::Primitive(Entry::Ident(
+//!         "TEST".to_string(),
+//!     ))));
+//!     // Dump to file in origin syntax.
+//!     println!("{}", ast);
 //! }
 //! ```
 //! 
 //! ## Supported Syntax
 //! 
-//! - Script: Paradox script. You can find the files in like `${game_root_dir}/game/common`.
-//! Most of the files are in this format.
+//! - Script: Paradox script. You can find the files in paths like `${game_root_dir}/game/common`.
+//! Most of the files are in this format. See [`crate::script`] for details.
 //! - Localization: Paradox localization file. You can find the files in `${game_root_dir}/game/localization`.
+//! See [`crate::localization`] for details.
 //! 
 //! ## Serialization
 //! 
 //! The AST defined in this crate can be serialized via [`serde`]. You can use this feature
-//! to convert the AST into other formats, like JSON, and use the parsing results in other
+//! to convert the AST into other formats, like JSON, and use the parsed results in other
 //! languages, like Python.
 //! 
 pub mod result;
